@@ -1,10 +1,10 @@
 import { useState } from 'react';
+import CategorySelector from './CategorySelector';
 import { createActivity } from '../services/activityService';
-
-const categories = ['Transport', 'Electricity', 'Food', 'Waste'];
 
 export default function ActivityForm({ onAdded }) {
   const [category, setCategory] = useState('Transport');
+  const [activityType, setActivityType] = useState('');
   const [date, setDate] = useState('');
   const [quantity, setQuantity] = useState('');
   const [unit, setUnit] = useState('');
@@ -18,9 +18,10 @@ export default function ActivityForm({ onAdded }) {
     setSuccess('');
 
     try {
-      await createActivity({ category, date, quantity, unit, description });
+      await createActivity({ category, activityType, date, quantity, unit, description });
       setSuccess('Activity added.');
       setCategory('Transport');
+      setActivityType('');
       setDate('');
       setQuantity('');
       setUnit('');
@@ -35,14 +36,16 @@ export default function ActivityForm({ onAdded }) {
 
   return (
     <form onSubmit={handleSubmit} className="activity-form">
-      <label>Category</label>
-      <select value={category} onChange={(e) => setCategory(e.target.value)}>
-        {categories.map((item) => (
-          <option key={item} value={item}>
-            {item}
-          </option>
-        ))}
-      </select>
+      <CategorySelector value={category} onChange={(e) => setCategory(e.target.value)} />
+
+      <label>Activity type</label>
+      <input
+        type="text"
+        value={activityType}
+        onChange={(e) => setActivityType(e.target.value)}
+        placeholder="e.g. Bus, Solar, Lunch"
+        required
+      />
 
       <label>Date</label>
       <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />

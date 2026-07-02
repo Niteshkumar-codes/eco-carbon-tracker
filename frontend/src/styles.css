@@ -29,7 +29,7 @@ body {
 }
 
 .card {
-  width: min(100%, 440px);
+  width: min(100%, 520px);
   background: white;
   border-radius: 20px;
   padding: 28px;
@@ -113,25 +113,27 @@ select {
 }
 
 .activity-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.activity-item {
+.activity-card {
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-  padding: 12px 14px;
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: center;
+  padding: 14px 16px;
+  background: #f8fafc;
 }
 
-.activity-item p {
+.activity-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.activity-card p {
   margin: 4px 0 0;
 }
 
